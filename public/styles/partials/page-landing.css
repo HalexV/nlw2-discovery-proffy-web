@@ -87,13 +87,23 @@
   margin-left: 0.8rem;
 }
 
-@media (max-width: 699px) {
+@media (max-width: 1023px) {
   :root {
-    font-size: 40%; /* modificar as medidas rem */
+    font-size: 35%; /* modificar as medidas rem */
+  }
+
+  #page-landing #container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-image {
+    width: 80%;
+    align-self: center;
   }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 1024px) {
   #page-landing #container {
     max-width: 1100px;
     display: grid;
