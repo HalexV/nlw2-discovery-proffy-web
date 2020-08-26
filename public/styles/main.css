@@ -19,6 +19,7 @@
     --color-box-base: #FFFFFF;
     --color-box-footer: #FAFAFC;
     --color-small-info: #C1BCCC;
+    --color-option-hover: #EBEBF5;
     
     /*Tamanho da fonte padrão: 16px - 100% - 1rem*/
     font-size: 60%; /* controle das medidas rem */

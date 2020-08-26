@@ -20,6 +20,17 @@
   font: 1.6rem Archivo;
 }
 
+
+.select-block select option {
+  font: 1.6rem Archivo;
+  color: var(--color-text-base);
+  transition: background 0.2s;
+}
+
+.select-block select option:hover {
+  background: var(--color-option-hover);
+}
+
 .textarea-block textarea {
   padding: 1.2rem 1.6rem;
   height: 16rem;
