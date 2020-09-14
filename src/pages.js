@@ -97,10 +97,15 @@ function pageSuccess(req, res) {
   return res.render("success.html");
 }
 
+function login(req, res) {
+  return res.render("login.html");
+}
+
 module.exports = {
   pageLanding,
   pageStudy,
   pageGiveClasses,
   saveClasses,
-  pageSuccess
+  pageSuccess,
+  login
 };

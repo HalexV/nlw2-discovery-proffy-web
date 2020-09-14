@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt_br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proffy | Sua plataforma de estudos online</title>
+
+  <meta name="theme-color" content="#8257E5">
+  
+  <link rel="shortcut icon" href="/images/favicon.png" type="image/png"> <!--Adicionando ícone da página-->
+
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/partials/page-login.css">
+  <link rel="stylesheet" href="/styles/partials/forms.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
+</head>
+<body id="page-login">
+  
+  <div id="container">
+    
+    
+    <main>
+      <header>
+        <h1>Entre agora mesmo no seu perfil Proffy!</h1>
+        <p class="error-message">E-mail e/ou Senha inválidos!</p>
+      </header>
+
+      <form action="/login" id="login" method="POST">
+        
+          
+
+          <div class="input-block">
+            <label for="email">E-mail</label>
+            <input type="email" name="email" id="email" required>
+          </div>
+
+          <div class="input-block">
+            <label for="password">Senha</label>
+            <input type="password" name="password" id="password" required>
+          </div>
+
+        
+      </form>
+
+      <footer>
+        <button type="submit" form="login">Entrar</button>
+        <a href="">Criar conta</a>
+      </footer>
+    </main>
+    
+  </div>
+  
+</body>
+</html>
