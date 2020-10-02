@@ -2,7 +2,7 @@ document.querySelector('#add-time')
 .addEventListener('click', addTimeFields);
 
 // It adds a new set of schedule fields only if the last set is completely filled out
-function addTimeFields() {
+function addTimeFields({ forceAdd = false }) {
   const arrayTimeFields = document.querySelectorAll('.schedule-item');
   const lastTimeFields = arrayTimeFields[arrayTimeFields.length - 1]; // Getting the last element
 
@@ -20,7 +20,7 @@ function addTimeFields() {
     }
   } );
   
-  if (canIClone) {
+  if (canIClone || forceAdd) {
     cloneField(lastTimeFields);
   }
   else {

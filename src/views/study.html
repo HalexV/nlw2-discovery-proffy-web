@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Proffy | Sua plataforma de estudos online</title>
+
+  <link rel="shortcut icon" href="/images/favicon.png" type="image/png"> <!--Adicionando ícone da página-->
   
   <link rel="stylesheet" href="/styles/main.css">
   <link rel="stylesheet" href="/styles/partials/header.css">
@@ -23,6 +25,10 @@
           <img src="/images/icons/back.svg" alt="Voltar">
         </a>
 
+        {% if user %}
+          <a id="logout" href="/logout">Sair</a>
+        {% endif %}
+        
         <img src="/images/logo.svg" alt="Proffy">
       </div>
 

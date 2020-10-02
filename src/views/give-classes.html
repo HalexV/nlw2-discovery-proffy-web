@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Proffy | Sua plataforma de estudos online</title>
   
+  <link rel="shortcut icon" href="/images/favicon.png" type="image/png"> <!--Adicionando ícone da página-->
+
   <link rel="stylesheet" href="/styles/main.css">
   <link rel="stylesheet" href="/styles/partials/header.css">
   <link rel="stylesheet" href="/styles/partials/forms.css">
@@ -13,7 +15,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
 </head>
 
-<body id="page-give-classes">
+<body id="page-give-classes" onload="getData()">
   
   <div id="container">
 
@@ -22,6 +24,8 @@
         <a href="/">
           <img src="/images/icons/back.svg" alt="Voltar">
         </a>
+        
+        <a id="logout" href="/logout">Sair</a>
 
         <img src="/images/logo.svg" alt="Proffy">
       </div>
@@ -134,5 +138,65 @@
 
   </div>
   <script src="/scripts/addField.js"></script>
+  <script>
+    const form = document.querySelector("#create-class");
+
+    async function getData () {
+      try {
+        const res = await fetch('/give-classes?getData=1', {
+          method: 'GET'
+        });
+
+        // receiving the response
+        const data = await res.json();
+        console.log(data);
+
+        // Injecting data on the form
+        if (data.status) {
+          
+          form.name.value = data.proffyValue.name;
+          form.avatar.value = data.proffyValue.avatar;
+          form.whatsapp.value = data.proffyValue.whatsapp;
+          form.bio.value = data.proffyValue.bio;
+
+          form.subject.value = data.classValue.subject;
+          form.cost.value = data.classValue.cost;
+
+          if (data.classScheduleValues.length === 1) {
+            const arrWeekday = document.getElementsByName("weekday[]");
+            const arrTimeFrom = document.getElementsByName("time_from[]");
+            const arrTimeTo = document.getElementsByName("time_to[]");
+
+            arrWeekday[0].value = data.classScheduleValues[0].weekday;
+            arrTimeFrom[0].value = data.classScheduleValues[0].time_from;
+            arrTimeTo[0].value = data.classScheduleValues[0].time_to;
+              
+          } else {
+            for (let i = 1; i < data.classScheduleValues.length; i++) {
+              addTimeFields({forceAdd: true});
+            }
+
+            const arrWeekday = document.getElementsByName("weekday[]");
+            const arrTimeFrom = document.getElementsByName("time_from[]");
+            const arrTimeTo = document.getElementsByName("time_to[]");
+
+            arrWeekday[0].value = data.classScheduleValues[0].weekday;
+            arrTimeFrom[0].value = data.classScheduleValues[0].time_from;
+            arrTimeTo[0].value = data.classScheduleValues[0].time_to;
+
+            for (let i = 1; i < data.classScheduleValues.length; i++) {
+              arrWeekday[i].value = data.classScheduleValues[i].weekday;
+              arrTimeFrom[i].value = data.classScheduleValues[i].time_from;
+              arrTimeTo[i].value = data.classScheduleValues[i].time_to;
+            }
+          }
+
+        }
+
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  </script>
 </body>
 </html>

@@ -28,12 +28,28 @@ function getSubject(subjectNumber) {
 
 function convertHoursToMinutes(time) {
   const [hour, minutes] = time.split(":");
-  return Number((hour * 60) + minutes);
+  return Number((hour * 60) + Number(minutes));
+}
+
+function convertMinutesToHours(time) {
+  let hour = Math.floor(time/60);
+  let minutes = time%60;
+
+  if (hour < 10) {
+    hour = `0${hour}`;
+  }
+  
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  return `${hour}:${minutes}`;  
 }
 
 module.exports = {
   subjects,
   weekdays,
   getSubject,
-  convertHoursToMinutes
+  convertHoursToMinutes,
+  convertMinutesToHours
 };

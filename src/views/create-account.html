@@ -10,23 +10,23 @@
   <link rel="shortcut icon" href="/images/favicon.png" type="image/png"> <!--Adicionando ícone da página-->
 
   <link rel="stylesheet" href="/styles/main.css">
-  <link rel="stylesheet" href="/styles/partials/page-login.css">
+  <link rel="stylesheet" href="/styles/partials/header.css">
+  <link rel="stylesheet" href="/styles/partials/page-create-account.css">
   <link rel="stylesheet" href="/styles/partials/forms.css">
 
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&amp;family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet">
 </head>
-<body id="page-login">
+<body id="page-create-account">
   
   <div id="container">
     
-    
     <main>
       <header>
-        <h1>Entre agora mesmo no seu perfil Proffy!</h1>
+        <h1>Informe um e-mail e senha para ter acesso ao seu perfil Proffy!</h1>
         <p class="error-message"></p>
       </header>
 
-      <form id="login">
+      <form id="createAccount">
         
           
 
@@ -40,18 +40,23 @@
             <input type="password" name="password" id="password" required>
           </div>
 
+          <div class="input-block">
+            <label for="confirmPassword">Confirme a Senha</label>
+            <input type="password" name="confirmPassword" id="confirmPassword" required>
+          </div>
+
         
       </form>
 
       <footer>
-        <button type="submit" form="login">Entrar</button>
-        <a href="/create-account">Criar conta</a>
+        <button type="submit" form="createAccount">Criar</button>
       </footer>
     </main>
     
   </div>
+  
   <script>
-    const form = document.getElementById("login");
+    const form = document.getElementById("createAccount");
     const errorMessage = document.querySelector('.error-message');
 
     form.addEventListener('submit', async (e) => {
@@ -59,21 +64,21 @@
 
       // reset error
       errorMessage.textContent = '';
-
+      
       // get the values
       const email = form.email.value;
       const password = form.password.value;
+      const confirmPassword = form.confirmPassword.value;
 
       try {
-        const res = await fetch('/login', {
+        const res = await fetch('/create-account', {
           method: 'POST',
-          body: JSON.stringify({ email, password }),
-          headers: {'Content-Type': 'application/json'}
+          body: JSON.stringify({ email, password, confirmPassword }),
+          headers: { 'Content-Type': 'application/json' }
         });
 
-        // receiving the response
         const data = await res.json();
-
+        
         if (data.errorMessage) {
           errorMessage.textContent = data.errorMessage;
         }
@@ -84,8 +89,9 @@
       } catch (err) {
         console.log(err);
       }
-      
+
     });
   </script>
+
 </body>
 </html>
